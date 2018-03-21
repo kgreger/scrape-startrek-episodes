@@ -49,7 +49,7 @@ link_list <- link_list %>%
 
 
 # download scripts
-for(i in 1:10) { #nrow(link_list)) {
+for(i in 1:nrow(link_list)) {
   cat(paste0(link_list$franchise[i], ": ", link_list$url[i]))
   url <- link_list$url[i]
   ## download page HTML
