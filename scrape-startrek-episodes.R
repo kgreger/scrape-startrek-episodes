@@ -20,7 +20,7 @@ link_list <- data.frame(url.hef = character(),
                         franchise = character())
 
 
-# gather links to episode scripts fro episode listings
+# gather links to episode scripts from episode listings
 ## collect links
 for(i in 1:length(episode_lists)) {
   url <- episode_lists[i]
@@ -92,6 +92,8 @@ for(i in 1:nrow(link_list)) {
     unlist() %>% 
     data.frame(contents = .) %>% 
     mutate(contents = trimws(contents), 
+           ## remove quotation marks
+           contents = gsub("[\"\']", "", contents), 
            ## extract captain's log
            captains_log = ifelse(grepl("^(Captain's log.+?)$", contents), 
                                  gsub("^(Captain's log.+?)$", "\\1", contents), 

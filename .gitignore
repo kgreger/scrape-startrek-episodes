@@ -2,4 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
-star-trek-scripts.csv
+*.csv
