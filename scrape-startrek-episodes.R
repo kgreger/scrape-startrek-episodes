@@ -93,7 +93,7 @@ for(i in 1:nrow(link_list)) {
     data.frame(contents = .) %>% 
     mutate(contents = trimws(contents), 
            ## remove quotation marks
-           contents = gsub("[\"\']", "", contents), 
+           contents = gsub("\'", "", contents), 
            ## extract captain's log
            captains_log = ifelse(grepl("^(Captain's log.+?)$", contents), 
                                  gsub("^(Captain's log.+?)$", "\\1", contents), 
