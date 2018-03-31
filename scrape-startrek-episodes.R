@@ -50,7 +50,7 @@ link_list <- link_list %>%
 
 # download scripts
 for(i in 1:nrow(link_list)) {
-  cat(paste0(link_list$franchise[i], ": ", link_list$url[i]))
+  cat(paste0(link_list$franchise[i], ": ", link_list$url[i], ": "))
   url <- link_list$url[i]
   ## download page HTML
   html <- url %>%
@@ -93,7 +93,7 @@ for(i in 1:nrow(link_list)) {
     data.frame(contents = .) %>% 
     mutate(contents = trimws(contents), 
            ## remove quotation marks
-           contents = gsub("\'", "", contents), 
+           contents = gsub("\"", "", contents), 
            ## extract captain's log
            captains_log = ifelse(grepl("^(Captain's log.+?)$", contents), 
                                  gsub("^(Captain's log.+?)$", "\\1", contents), 
@@ -146,6 +146,8 @@ for(i in 1:nrow(link_list)) {
     select(-one_of(c("contents", 
                      "speaker_note1", 
                      "speaker_note2")))
+  
+  cat(paste0(nrow(contents), " lines\n"))
   
   ## write results to disk
   if(i == 1) {
